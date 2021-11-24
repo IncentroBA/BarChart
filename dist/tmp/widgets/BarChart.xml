@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="incentro.barchart.BarChart" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Bar Chart</name>
+    <description>Simple barchart</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <property key="context" type="datasource" isList="true" required="true">
+                <caption>Context</caption>
+                <description>Listview context</description>
+            </property>
+            <property key="chartValue" type="attribute" dataSource="context" required="true">
+                <caption>chart value</caption>
+                <description>Barchart value</description>
+                <attributeTypes>
+                    <attributeType name="Integer" />
+                    <attributeType name="Decimal" />
+                </attributeTypes>
+            </property>
+            <property key="chartName" type="attribute" dataSource="context" required="true">
+                <caption>Value names</caption>
+                <description>Barchart value names</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Colors">
+            <property key="colors" type="object" isList="true">
+                <caption>Colors</caption>
+                <description/>
+                <properties>
+                    <propertyGroup caption="Object list group">
+                        <property key="value" type="string">
+                            <caption>Color value</caption>
+                            <description>Contains the color of each item e.g. green = #00FF00 or rgb(0, 255, 0)</description>
+                        </property>
+                    </propertyGroup>
+                </properties>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

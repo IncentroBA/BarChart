@@ -1,0 +1,71 @@
+.barchart-widget {
+    margin-bottom: 24px;
+}
+
+.barchart-widget .barchart-legend {
+    margin-bottom: 30px;
+    padding: 0;
+}
+
+.barchart-widget .barchart-legend li {
+    align-items: center;
+    display: flex;
+    list-style: none;
+}
+
+.barchart-widget .barchart-legend p {
+    margin: 0;
+}
+
+.barchart-widget .barchart-legend span {
+    border-radius: 50px;
+    display: block;
+    height: 16px;
+    margin-right: 14px;
+    width: 16px;
+}
+
+.barchart-widget .barchart-chart {
+    align-self: center;
+    display: flex;
+    grid-template-columns: repeat(100, 1fr);
+    grid-auto-flow: column;
+    margin: 0;
+    padding: 0;
+}
+
+.barchart-widget .barchart-chart li {
+    list-style: none;
+}
+
+.barchart-widget .barchart-chart li span {
+    padding: 4px 8px;
+}
+
+.barchart-widget .barchart-meter {
+    border-top: solid 1px black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.barchart-widget .barchart-meter .item {
+    background-color: black;
+    height: 9px;
+    width: 1px;
+}
+
+.barchart-widget .barchart-indicators {
+    display: flex;
+}
+
+.barchart-widget .barchart-indicator {
+    flex: 1;
+}
+
+.barchart-widget .barchart-indicator:nth-child(2) {
+    text-align: center;
+}
+
+.barchart-widget .barchart-indicator:last-of-type {
+    text-align: right;
+}
