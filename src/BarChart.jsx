@@ -1,15 +1,30 @@
 import "./ui/BarChart.css";
-import { createElement, useEffect, useRef, useState } from "react";
+import { createElement, useEffect, useRef, useCallback, useState } from "react";
 
 export default function BarChart({ context, chartValue, colors, chartName }) {
     const [canRender, setCanRender] = useState(false);
     const containerRef = useRef([]);
+    const colorArray = ["#78909C", "#90A4AE", "#B0BEC5", "#CFD8DC", "#ECEFF1", "#607D8B"];
+
+    const tooltipRef = useCallback(tooltipNode => {
+        if (tooltipNode.getBoundingClientRect().right >= window.innerWidth) {
+            tooltipNode.classList.add("align-right");
+        }
+    }, []);
 
     useEffect(() => {
         if (context && context.status === "available" && context.items.length > 0) {
             setCanRender(true);
         }
     }, [context, colors]);
+
+    function showTooltip(index) {
+        index.classList.add("show-tooltip");
+    }
+
+    function hideTooltip(index) {
+        index.classList.remove("show-tooltip");
+    }
 
     if (canRender) {
         return (
@@ -20,8 +35,16 @@ export default function BarChart({ context, chartValue, colors, chartName }) {
                             key={item}
                             ref={element => (containerRef.current[index] = element)}
                             name={`barchart-legend-index-${index}`}
+                            onMouseEnter={() => showTooltip(containerRef.current[index])}
+                            onMouseLeave={() => hideTooltip(containerRef.current[index])}
                         >
-                            <span style={{ backgroundColor: colors[index] && colors[index].value }}></span>
+                            <span
+                                style={{
+                                    backgroundColor: `var(--barchart-color-${[index]}, ${
+                                        colors[index] ? colors[index].value : colorArray[index]
+                                    })`
+                                }}
+                            ></span>
                             <p>{chartName.get(context.items[index]).displayValue}</p>
                         </li>
                     ))}
@@ -32,14 +55,21 @@ export default function BarChart({ context, chartValue, colors, chartName }) {
                             key={item}
                             ref={element => (containerRef.current[index] = element)}
                             name={`barchart-index-${index}`}
+                            onMouseEnter={() => showTooltip(containerRef.current[index])}
+                            onMouseLeave={() => hideTooltip(containerRef.current[index])}
                             style={{
                                 flex: chartValue.get(context.items[index]).displayValue,
-                                backgroundColor: colors[index] && colors[index].value
+                                backgroundColor: `var(--barchart-color-${[index]}, ${
+                                    colors[index] ? colors[index].value : colorArray[index]
+                                })`
                             }}
                         >
-                            {chartValue.get(context.items[index]).displayValue >= 5 && (
-                                <span>{chartValue.get(context.items[index]).displayValue}%</span>
-                            )}
+                            <div className="barchart-tooltip" ref={tooltipRef}>
+                                <p>
+                                    <span>{chartValue.get(context.items[index]).displayValue}% </span>
+                                    {chartName.get(context.items[index]).displayValue}
+                                </p>
+                            </div>
                         </li>
                     ))}
                 </ul>

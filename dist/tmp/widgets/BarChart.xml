@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Bar Chart</name>
     <description>Simple barchart</description>
-    <icon/>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAAEEfUpiAAAACXBIWXMAAAsSAAALEgHS3X78AAAAuklEQVRYhWMgCBijo2P+E1aGF1DBDLAR9ZPn41aBbkd0dEwDhe6mOmC89e433oCgRmgPfcBIadyxMDAw1ONNLYQAoRQ7GFPXKBh8gOKkTLDIwAcacxMZmCgNE9qWSYTCB2Q5xV4YBaNgFAwHAC6MHLwCBsQrB7ZtADctGOw9/QfWAQe3bxwQB4AAC9QljWTqt4fSB8nUX0+wcYYPgOobSupkkN2gECDX9yBwgAK9DBTaPQpGARUAAwMDALH6PJ5ndwluAAAAAElFTkSuQmCC</icon>
     <properties>
         <propertyGroup caption="General">
             <property key="context" type="datasource" isList="true" required="true">
