@@ -1,7 +1,15 @@
 import "./ui/BarChart.css";
 import { createElement, useEffect, useRef, useCallback, useState } from "react";
 
-export default function BarChart({ context, chartValue, colors, chartName }) {
+export default function BarChart({
+    context,
+    chartValue,
+    colors,
+    customSortOrder,
+    chartName,
+    sortAttribute,
+    sortOrder
+}) {
     const [canRender, setCanRender] = useState(false);
     const containerRef = useRef([]);
     const colorArray = ["#78909C", "#90A4AE", "#B0BEC5", "#CFD8DC", "#ECEFF1", "#607D8B"];
@@ -12,11 +20,7 @@ export default function BarChart({ context, chartValue, colors, chartName }) {
         }
     }, []);
 
-    useEffect(() => {
-        if (context && context.status === "available" && context.items.length > 0) {
-            setCanRender(true);
-        }
-    }, [context, colors]);
+    let sortInstrs = [];
 
     function showTooltip(index) {
         index.classList.add("show-tooltip");
@@ -25,6 +29,24 @@ export default function BarChart({ context, chartValue, colors, chartName }) {
     function hideTooltip(index) {
         index.classList.remove("show-tooltip");
     }
+
+    function setSortOrder() {
+        if (!customSortOrder && sortAttribute === "chartName" && chartName.sortable) {
+            sortInstrs = [[chartName.id, sortOrder]];
+        } else if (!customSortOrder && sortAttribute === "chartValue" && chartValue.sortable) {
+            sortInstrs = [[chartValue.id, sortOrder]];
+        } else if (customSortOrder && customSortOrder.sortable) {
+            sortInstrs = [[customSortOrder.id, sortOrder]];
+        }
+        context.setSortOrder(sortInstrs);
+    }
+
+    useEffect(() => {
+        if (context && context.status === "available" && context.items.length > 0) {
+            setCanRender(true);
+            setSortOrder();
+        }
+    }, [context, colors]);
 
     if (canRender) {
         return (

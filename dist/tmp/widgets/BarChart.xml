@@ -4,7 +4,7 @@
         xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Bar Chart</name>
-    <description>Simple barchart</description>
+    <description>Display a simple single-line percentage divided barchart.</description>
     <icon>iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAAEEfUpiAAAACXBIWXMAAAsSAAALEgHS3X78AAAAuklEQVRYhWMgCBijo2P+E1aGF1DBDLAR9ZPn41aBbkd0dEwDhe6mOmC89e433oCgRmgPfcBIadyxMDAw1ONNLYQAoRQ7GFPXKBh8gOKkTLDIwAcacxMZmCgNE9qWSYTCB2Q5xV4YBaNgFAwHAC6MHLwCBsQrB7ZtADctGOw9/QfWAQe3bxwQB4AAC9QljWTqt4fSB8nUX0+wcYYPgOobSupkkN2gECDX9yBwgAK9DBTaPQpGARUAAwMDALH6PJ5ndwluAAAAAElFTkSuQmCC</icon>
     <properties>
         <propertyGroup caption="General">
@@ -25,6 +25,32 @@
                 <description>Barchart value names</description>
                 <attributeTypes>
                     <attributeType name="String" />
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Sorting">
+            <property key="sortAttribute" type="enumeration" defaultValue="chartName">
+                <caption>Sort attribute</caption>
+                <description>Sort on which attribute.</description>
+                <enumerationValues>
+                    <enumerationValue key="chartName">Name</enumerationValue>
+                    <enumerationValue key="chartValue">Value</enumerationValue>
+                    <!-- <enumerationValue key="ID">Id</enumerationValue> -->
+                </enumerationValues>
+            </property>
+            <property key="sortOrder" type="enumeration" defaultValue="asc">
+                <caption>Sort order</caption>
+                <description>Sort the attribute in one of these ways.</description>
+                <enumerationValues>
+                    <enumerationValue key="asc">Ascending</enumerationValue>
+                    <enumerationValue key="desc">Descending</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="customSortOrder" type="attribute" dataSource="context" required="false">
+                <caption>Custom sort order</caption>
+                <description>Set your own sort order attribute. This overwrites other sort settings.</description>
+                <attributeTypes>
+                    <attributeType name="Integer" />
                 </attributeTypes>
             </property>
         </propertyGroup>
