@@ -27,6 +27,14 @@
                     <attributeType name="String" />
                 </attributeTypes>
             </property>
+            <property key="legendOrientation" type="enumeration" defaultValue="vertical">
+                <caption>Sort attribute</caption>
+                <description>Sort on which attribute.</description>
+                <enumerationValues>
+                    <enumerationValue key="vertical">Vertical</enumerationValue>
+                    <enumerationValue key="horizontal">Horizontal</enumerationValue>
+                </enumerationValues>
+            </property>
         </propertyGroup>
         <propertyGroup caption="Sorting">
             <property key="sortAttribute" type="enumeration" defaultValue="chartName">
@@ -35,7 +43,6 @@
                 <enumerationValues>
                     <enumerationValue key="chartName">Name</enumerationValue>
                     <enumerationValue key="chartValue">Value</enumerationValue>
-                    <!-- <enumerationValue key="ID">Id</enumerationValue> -->
                 </enumerationValues>
             </property>
             <property key="sortOrder" type="enumeration" defaultValue="asc">

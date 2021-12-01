@@ -7,12 +7,13 @@ export default function BarChart({
     colors,
     customSortOrder,
     chartName,
+    legendOrientation,
     sortAttribute,
     sortOrder
 }) {
     const [canRender, setCanRender] = useState(false);
     const containerRef = useRef([]);
-    const colorArray = ["#78909C", "#90A4AE", "#B0BEC5", "#CFD8DC", "#ECEFF1", "#607D8B"];
+    const colorArray = ["#003f5c", "#2f4b7c", "#665191", "#a05195", "#d45087", "#f95d6a", "#ff7c43", "#ffa600"];
 
     const tooltipRef = useCallback(tooltipNode => {
         if (tooltipNode.getBoundingClientRect().right >= window.innerWidth) {
@@ -51,7 +52,7 @@ export default function BarChart({
     if (canRender) {
         return (
             <div className="barchart-widget">
-                <ul className="barchart-legend">
+                <ul className={`barchart-legend barchart-legend--${legendOrientation}`}>
                     {context.items.map((item, index) => (
                         <li
                             key={item}

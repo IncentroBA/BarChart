@@ -4,10 +4,19 @@
 }
 
 .barchart-widget .barchart-legend {
-    display: flex;
-    flex-direction: column;
     margin-bottom: 30px;
     padding: 0;
+}
+
+.barchart-widget .barchart-legend--horizontal {
+    display: grid;
+    gap: 8px ​16px;
+    grid-template-columns: repeat(auto-fit, 250px);
+}
+
+.barchart-widget .barchart-legend--vertical {
+    display: flex;
+    flex-direction: column;
     width: max-content;
 }
 
@@ -29,7 +38,7 @@
     border-radius: 50px;
     display: block;
     height: 16px;
-    margin-right: 14px;
+    margin-right: 8px;
     width: 16px;
 }
 
