@@ -28,8 +28,8 @@
                 </attributeTypes>
             </property>
             <property key="legendOrientation" type="enumeration" defaultValue="vertical">
-                <caption>Sort attribute</caption>
-                <description>Sort on which attribute.</description>
+                <caption>Legend orientation</caption>
+                <description>Set the orientation in which the legend is displayed.</description>
                 <enumerationValues>
                     <enumerationValue key="vertical">Vertical</enumerationValue>
                     <enumerationValue key="horizontal">Horizontal</enumerationValue>

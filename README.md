@@ -12,6 +12,8 @@ Both the bar legend and the bar chart segments can be hovered to see some additi
 
 Sorting options: The results can be sorted by name, value or even via custom attribute (`Integer`).
 
+Legend orientation: Set the orientation in which the legend is displayed (`horizontal`, `vertical`).
+
 ## Usage
 
 1. Install NPM package dependencies by using: `npm install`. If you use NPM v7.x.x, which can be checked by executing
