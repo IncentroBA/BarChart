@@ -27,14 +27,6 @@
                     <attributeType name="String" />
                 </attributeTypes>
             </property>
-            <property key="legendOrientation" type="enumeration" defaultValue="vertical">
-                <caption>Legend orientation</caption>
-                <description>Set the orientation in which the legend is displayed.</description>
-                <enumerationValues>
-                    <enumerationValue key="vertical">Vertical</enumerationValue>
-                    <enumerationValue key="horizontal">Horizontal</enumerationValue>
-                </enumerationValues>
-            </property>
         </propertyGroup>
         <propertyGroup caption="Sorting">
             <property key="sortAttribute" type="enumeration" defaultValue="chartName">
@@ -73,6 +65,24 @@
                         </property>
                     </propertyGroup>
                 </properties>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Visual Details">
+            <property key="legendOrientation" type="enumeration" defaultValue="vertical">
+                <caption>Legend orientation</caption>
+                <description>Set the orientation in which the legend is displayed.</description>
+                <enumerationValues>
+                    <enumerationValue key="vertical">Vertical</enumerationValue>
+                    <enumerationValue key="horizontal">Horizontal</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="roundedCorners" type="boolean" defaultValue="false">
+                <caption>Rounded corners</caption>
+                <description>Give the chart rounded corners.</description>
+            </property>
+            <property key="disableIndicators" type="boolean" defaultValue="false">
+                <caption>Disable Indicators</caption>
+                <description>Remove the percentage bar.</description>
             </property>
         </propertyGroup>
     </properties>

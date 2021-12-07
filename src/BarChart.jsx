@@ -7,13 +7,16 @@ export default function BarChart({
     colors,
     customSortOrder,
     chartName,
+    disableIndicators,
     legendOrientation,
+    roundedCorners,
     sortAttribute,
     sortOrder
 }) {
     const [canRender, setCanRender] = useState(false);
     const containerRef = useRef([]);
     const colorArray = ["#003f5c", "#2f4b7c", "#665191", "#a05195", "#d45087", "#f95d6a", "#ff7c43", "#ffa600"];
+    const rounded = roundedCorners ? "barchart-chart--rounded" : null;
 
     const tooltipRef = useCallback(tooltipNode => {
         if (tooltipNode.getBoundingClientRect().right >= window.innerWidth) {
@@ -72,7 +75,7 @@ export default function BarChart({
                         </li>
                     ))}
                 </ul>
-                <ul className="barchart-chart">
+                <ul className={`barchart-chart ${rounded}`}>
                     {context.items.map((item, index) => (
                         <li
                             key={item}
@@ -96,24 +99,29 @@ export default function BarChart({
                         </li>
                     ))}
                 </ul>
-                <div className="barchart-meter">
-                    <div className="item"></div>
-                    <div className="item"></div>
-                    <div className="item"></div>
-                    <div className="item"></div>
-                    <div className="item"></div>
-                    <div className="item"></div>
-                    <div className="item"></div>
-                    <div className="item"></div>
-                    <div className="item"></div>
-                    <div className="item"></div>
-                    <div className="item"></div>
-                </div>
-                <div className="barchart-indicators">
-                    <span className="barchart-indicator">0%</span>
-                    <span className="barchart-indicator">50%</span>
-                    <span className="barchart-indicator">100%</span>
-                </div>
+                {!disableIndicators && (
+                    <div className="barchart-meter">
+                        <div className="item"></div>
+                        <div className="item"></div>
+                        <div className="item"></div>
+                        <div className="item"></div>
+                        <div className="item"></div>
+                        <div className="item"></div>
+                        <div className="item"></div>
+                        <div className="item"></div>
+                        <div className="item"></div>
+                        <div className="item"></div>
+                        <div className="item"></div>
+                    </div>
+                )}
+
+                {!disableIndicators && (
+                    <div className="barchart-indicators">
+                        <span className="barchart-indicator">0%</span>
+                        <span className="barchart-indicator">50%</span>
+                        <span className="barchart-indicator">100%</span>
+                    </div>
+                )}
             </div>
         );
     } else {

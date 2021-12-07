@@ -57,6 +57,16 @@
     position: relative;
 }
 
+.barchart-widget .barchart-chart.barchart-chart--rounded li:first-of-type {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.barchart-widget .barchart-chart.barchart-chart--rounded li:last-of-type {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
 .barchart-widget .barchart-chart li:hover {
     cursor: pointer;
 }

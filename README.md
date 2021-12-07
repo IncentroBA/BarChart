@@ -14,6 +14,10 @@ Sorting options: The results can be sorted by name, value or even via custom att
 
 Legend orientation: Set the orientation in which the legend is displayed (`horizontal`, `vertical`).
 
+Show/hide percentage indicators (`boolean`).
+
+Display rounded corners (`boolean`).
+
 ## Usage
 
 1. Install NPM package dependencies by using: `npm install`. If you use NPM v7.x.x, which can be checked by executing
