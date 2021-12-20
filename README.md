@@ -1,6 +1,7 @@
 ## BarChart
 
-Display a simple single-line barchart. All items should represent a total of 100% within the bar.
+Display a simple single-line barchart based on listview-style data input. The item type is configurable and the amount
+can be of any (positive) range of numbers starting from 0.
 
 ## Features
 
@@ -17,6 +18,10 @@ Legend orientation: Set the orientation in which the legend is displayed (`horiz
 Show/hide percentage indicators (`boolean`).
 
 Display rounded corners (`boolean`).
+
+Display units alongside the numbers (`String`). This can be anything like cm, kg, %, EUR, €, $, ...
+
+Display the units before or after the value (`Enumeration`).
 
 ## Usage
 

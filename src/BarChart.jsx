@@ -11,11 +11,14 @@ export default function BarChart({
     legendOrientation,
     roundedCorners,
     sortAttribute,
-    sortOrder
+    sortOrder,
+    unit,
+    unitPosition
 }) {
     const [canRender, setCanRender] = useState(false);
     const containerRef = useRef([]);
     const colorArray = ["#003f5c", "#2f4b7c", "#665191", "#a05195", "#d45087", "#f95d6a", "#ff7c43", "#ffa600"];
+    const [total, setTotal] = useState(0);
     const rounded = roundedCorners ? "barchart-chart--rounded" : null;
 
     const tooltipRef = useCallback(tooltipNode => {
@@ -34,6 +37,12 @@ export default function BarChart({
         index.classList.remove("show-tooltip");
     }
 
+    function calcTotal() {
+        const totals = [];
+        context.items.map((item, index) => totals.push(Number(chartValue.get(context.items[index]).displayValue)));
+        setTotal(totals.reduce((a, b) => a + b, 0));
+    }
+
     function setSortOrder() {
         if (!customSortOrder && sortAttribute === "chartName" && chartName.sortable) {
             sortInstrs = [[chartName.id, sortOrder]];
@@ -47,8 +56,9 @@ export default function BarChart({
 
     useEffect(() => {
         if (context && context.status === "available" && context.items.length > 0) {
-            setCanRender(true);
             setSortOrder();
+            calcTotal();
+            setCanRender(true);
         }
     }, [context, colors]);
 
@@ -92,7 +102,11 @@ export default function BarChart({
                         >
                             <div className="barchart-tooltip" ref={tooltipRef}>
                                 <p>
-                                    <span>{chartValue.get(context.items[index]).displayValue}% </span>
+                                    <span>
+                                        {unitPosition === "before" && unit && unit}
+                                        {chartValue.get(context.items[index]).displayValue}
+                                        {unitPosition === "after" && unit && unit}
+                                    </span>{" "}
                                     {chartName.get(context.items[index]).displayValue}
                                 </p>
                             </div>
@@ -117,9 +131,21 @@ export default function BarChart({
 
                 {!disableIndicators && (
                     <div className="barchart-indicators">
-                        <span className="barchart-indicator">0%</span>
-                        <span className="barchart-indicator">50%</span>
-                        <span className="barchart-indicator">100%</span>
+                        <span className="barchart-indicator">
+                            {unitPosition === "before" && unit && unit}
+                            {"0"}
+                            {unitPosition === "after" && unit && unit}
+                        </span>
+                        <span className="barchart-indicator">
+                            {unitPosition === "before" && unit && unit}
+                            {total / 2}
+                            {unitPosition === "after" && unit && unit}
+                        </span>
+                        <span className="barchart-indicator">
+                            {unitPosition === "before" && unit && unit}
+                            {total}
+                            {unitPosition === "after" && unit && unit}
+                        </span>
                     </div>
                 )}
             </div>
