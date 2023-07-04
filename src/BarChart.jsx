@@ -1,5 +1,5 @@
 import "./ui/BarChart.css";
-import { createElement, useEffect, useRef, useCallback, useState } from "react";
+import { createElement, useCallback, useEffect, useRef, useState } from "react";
 
 export default function BarChart({
     context,
@@ -27,8 +27,6 @@ export default function BarChart({
         }
     }, []);
 
-    let sortInstrs = [];
-
     function showTooltip(index) {
         index.classList.add("show-tooltip");
     }
@@ -37,30 +35,30 @@ export default function BarChart({
         index.classList.remove("show-tooltip");
     }
 
-    function calcTotal() {
-        const totals = [];
-        context.items.map((item, index) => totals.push(Number(chartValue.get(context.items[index]).displayValue)));
-        setTotal(totals.reduce((a, b) => a + b, 0));
-    }
-
-    function setSortOrder() {
-        if (!customSortOrder && sortAttribute === "chartName" && chartName.sortable) {
-            sortInstrs = [[chartName.id, sortOrder]];
-        } else if (!customSortOrder && sortAttribute === "chartValue" && chartValue.sortable) {
-            sortInstrs = [[chartValue.id, sortOrder]];
-        } else if (customSortOrder && customSortOrder.sortable) {
-            sortInstrs = [[customSortOrder.id, sortOrder]];
-        }
-        context.setSortOrder(sortInstrs);
-    }
-
     useEffect(() => {
+        function calcTotal() {
+            const totals = [];
+            context.items.map((item, index) => totals.push(Number(chartValue.get(context.items[index]).displayValue)));
+            setTotal(totals.reduce((a, b) => a + b, 0));
+        }
+        function setSortOrder() {
+            let sortInstrs = [];
+            if (!customSortOrder && sortAttribute === "chartName" && chartName.sortable) {
+                sortInstrs = [[chartName.id, sortOrder]];
+            } else if (!customSortOrder && sortAttribute === "chartValue" && chartValue.sortable) {
+                sortInstrs = [[chartValue.id, sortOrder]];
+            } else if (customSortOrder && customSortOrder.sortable) {
+                sortInstrs = [[customSortOrder.id, sortOrder]];
+            }
+            context.setSortOrder(sortInstrs);
+        }
+
         if (context && context.status === "available" && context.items.length > 0) {
             setSortOrder();
             calcTotal();
             setCanRender(true);
         }
-    }, [context, colors]);
+    }, [context, colors, customSortOrder, sortAttribute, chartName, chartValue, sortOrder]);
 
     if (canRender) {
         return (
