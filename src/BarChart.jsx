@@ -130,9 +130,7 @@ export default function BarChart({
                 {!disableIndicators && (
                     <div className="barchart-indicators">
                         <span className="barchart-indicator">
-                            {unitPosition === "before" && unit && unit}
-                            {"0"}
-                            {unitPosition === "after" && unit && unit}
+                            {unitPosition === "before" && unit && unit}0{unitPosition === "after" && unit && unit}
                         </span>
                         <span className="barchart-indicator">
                             {unitPosition === "before" && unit && unit}

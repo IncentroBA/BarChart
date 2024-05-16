@@ -10,8 +10,14 @@
 
 .barchart-widget .barchart-legend--horizontal {
     display: grid;
-    gap: 8px ​16px;
+    gap: 8px 16px;
     grid-template-columns: repeat(auto-fit, 250px);
+}
+
+.barchart-widget .barchart-legend-preview--horizontal {
+    display: grid;
+    gap: 8px 16px;
+    grid-template-columns: repeat(auto-fit, 100px);
 }
 
 .barchart-widget .barchart-legend--vertical {
