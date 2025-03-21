@@ -22,7 +22,7 @@ export default function BarChart({
     const rounded = roundedCorners ? "barchart-chart--rounded" : null;
 
     const tooltipRef = useCallback(tooltipNode => {
-        if (tooltipNode.getBoundingClientRect().right >= window.innerWidth) {
+        if (tooltipNode?.getBoundingClientRect().right >= window.innerWidth) {
             tooltipNode.classList.add("align-right");
         }
     }, []);
@@ -64,52 +64,54 @@ export default function BarChart({
         return (
             <div className="barchart-widget">
                 <ul className={`barchart-legend barchart-legend--${legendOrientation}`}>
-                    {context.items.map((item, index) => (
-                        <li
-                            key={item}
-                            ref={element => (containerRef.current[index] = element)}
-                            name={`barchart-legend-index-${index}`}
-                            onMouseEnter={() => showTooltip(containerRef.current[index])}
-                            onMouseLeave={() => hideTooltip(containerRef.current[index])}
-                        >
-                            <span
+                    {context.items &&
+                        context.items.map((item, index) => (
+                            <li
+                                key={item}
+                                ref={element => (containerRef.current[index] = element)}
+                                name={`barchart-legend-index-${index}`}
+                                onMouseEnter={() => showTooltip(containerRef.current[index])}
+                                onMouseLeave={() => hideTooltip(containerRef.current[index])}
+                            >
+                                <span
+                                    style={{
+                                        backgroundColor: `var(--barchart-color-${[index]}, ${
+                                            colors[index] ? colors[index].value : colorArray[index]
+                                        })`
+                                    }}
+                                ></span>
+                                <p>{chartName.get(context.items[index]).displayValue}</p>
+                            </li>
+                        ))}
+                </ul>
+                <ul className={`barchart-chart ${rounded}`}>
+                    {context.items &&
+                        context.items.map((item, index) => (
+                            <li
+                                key={item}
+                                ref={element => (containerRef.current[index] = element)}
+                                name={`barchart-index-${index}`}
+                                onMouseEnter={() => showTooltip(containerRef.current[index])}
+                                onMouseLeave={() => hideTooltip(containerRef.current[index])}
                                 style={{
+                                    flex: chartValue.get(context.items[index]).displayValue,
                                     backgroundColor: `var(--barchart-color-${[index]}, ${
                                         colors[index] ? colors[index].value : colorArray[index]
                                     })`
                                 }}
-                            ></span>
-                            <p>{chartName.get(context.items[index]).displayValue}</p>
-                        </li>
-                    ))}
-                </ul>
-                <ul className={`barchart-chart ${rounded}`}>
-                    {context.items.map((item, index) => (
-                        <li
-                            key={item}
-                            ref={element => (containerRef.current[index] = element)}
-                            name={`barchart-index-${index}`}
-                            onMouseEnter={() => showTooltip(containerRef.current[index])}
-                            onMouseLeave={() => hideTooltip(containerRef.current[index])}
-                            style={{
-                                flex: chartValue.get(context.items[index]).displayValue,
-                                backgroundColor: `var(--barchart-color-${[index]}, ${
-                                    colors[index] ? colors[index].value : colorArray[index]
-                                })`
-                            }}
-                        >
-                            <div className="barchart-tooltip" ref={tooltipRef}>
-                                <p>
-                                    <span>
-                                        {unitPosition === "before" && unit && unit}
-                                        {chartValue.get(context.items[index]).displayValue}
-                                        {unitPosition === "after" && unit && unit}
-                                    </span>{" "}
-                                    {chartName.get(context.items[index]).displayValue}
-                                </p>
-                            </div>
-                        </li>
-                    ))}
+                            >
+                                <div className="barchart-tooltip" ref={tooltipRef}>
+                                    <p>
+                                        <span>
+                                            {unitPosition === "before" && unit && unit}
+                                            {chartValue.get(context.items[index]).displayValue}
+                                            {unitPosition === "after" && unit && unit}
+                                        </span>{" "}
+                                        {chartName.get(context.items[index]).displayValue}
+                                    </p>
+                                </div>
+                            </li>
+                        ))}
                 </ul>
                 {!disableIndicators && (
                     <div className="barchart-meter">

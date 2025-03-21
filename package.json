@@ -1,7 +1,7 @@
 {
   "name": "barchart",
   "widgetName": "BarChart",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Display a simple single-line percentage divided bar chart.",
   "copyright": "2024 Incentro International B.V.",
   "author": "Rob Duits",
@@ -25,10 +25,10 @@
     "release": "pluggable-widgets-tools release:web"
   },
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "^10.5.0"
+    "@mendix/pluggable-widgets-tools": "^10.18.1"
   },
   "dependencies": {
-    "big.js": "^6.2.1",
+    "big.js": "^6.2.2",
     "classnames": "^2.5.1"
   },
   "resolutions": {
